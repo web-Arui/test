@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <mycom1></mycom1>
+    </div>
+    <template id="temp">
+            <div>
+                <h3>这是第三种方法</h3>
+                <h1>哈哈哈</h1>
+            </div>
+        </template>
+    <script>
+        //第一种创建组件的方法 Vue.extend
+
+        // var com1=Vue.extend({
+        //     template:'<h3>这是一种方法</h3>'
+        // })
+        // Vue.component('mycom1',com1)
+         
+         //上面的简写
+        // Vue.component('mycom1',Vue.extend({
+        //     template:'<h3>这是一种方法</h3>'
+        // }))
+
+        //第二种方法
+        // Vue.component('mycom1',{
+        //     template:'<div><h3>这是二种方法</h3><span>123</span></div>'
+        // })
+
+        //创建组件的第三中方法
+        Vue.component('mycom1',{
+            template:'#temp'
+        })
+
+        var vm=new Vue({
+            el:'#app',
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>
