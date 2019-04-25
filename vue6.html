@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <style>
+        .myactive{
+            color: red;
+            background-color: green;
+        }
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px)
+        }
+        .v-enter-active,
+        .v-leave-avtive{
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <a href="#/login">登陆</a>
+        <a href="#/register">注册</a> -->
+
+        <router-link to='/login?id=10'>登陆</router-link>
+        <router-link to="/register" tag="span">注册</router-link>
+        <transition mode='out-in'>
+                <router-view></router-view>
+        </transition>
+    </div>
+    <script>
+
+        var login = {
+            template: '<h1>登陆组件---{{$route.query.id}}</h1>',
+            data(){
+                return{
+                    msg:'123'
+                }
+                
+            }
+        }
+        var register = {
+            template: '<h1>注册组件</h1>'
+        }
+        var routerObj = new VueRouter({
+            routes: [
+                {path:'/',redirect:'/login'},
+                { path: '/login', component: login },
+                { path: '/register', component: register }
+            ],
+            linkActiveClass:'myactive' //linkActiveClass改变它的类名，它的默认类名router-link-active
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            },
+            router:routerObj
+        })
+    </script>
+</body>
+
+</html>
